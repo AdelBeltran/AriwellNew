@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+         <!-- Inherit Form View to Modify it -->
+        <record id="ln10_do_view_account_journal_form" model="ir.ui.view">
+            <field name="name">ln10_do_view_account_journal_form</field>
+            <field name="model">account.journal</field>
+            <field name="inherit_id" ref="account.view_account_journal_form"/>
+            <field name="arch" type="xml">
+
+                <field name="bank_id" position="after">
+                    <field name="statement_import_type" attrs="{'required': [('type', '=', 'bank')]}" />
+                </field>
+
+            </field>
+        </record>
+
+</odoo>
+

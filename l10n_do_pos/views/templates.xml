@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="assets_l10n_do_pos" inherit_id="point_of_sale.assets">
+        <xpath expr="." position="inside">
+            <link rel="stylesheet" href="/l10n_do_pos/static/src/libs/jquery-autocomplete-ui.css"/>
+            <link rel="stylesheet" href="/l10n_do_pos/static/src/css/l10n_do_pos.css"/>
+            <script type="text/javascript" src="/l10n_do_pos/static/src/js/utils.js"/>
+            <script type="text/javascript" src="/l10n_do_pos/static/src/js/models.js"/>
+            <script type="text/javascript" src="/l10n_do_pos/static/src/js/screens.js"/>
+            <script type="text/javascript" src="/l10n_do_pos/static/src/js/db.js"/>
+<!--            <script type="text/javascript" src="/l10n_do_pos/static/src/js/invoices.js"/>-->
+<!--            <script type="text/javascript" src="/l10n_do_pos/static/src/js/chrome.js"/>-->
+        </xpath>
+    </template>
+</odoo>

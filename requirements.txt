@@ -1,0 +1,5 @@
+simplejson
+zeep
+python-stdnum==1.13
+pycountry
+numpy-financial

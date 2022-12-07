@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="account.account_invoices_without_payment" model="ir.actions.report">
+        <field name="name">Invoices without Payment</field>
+        <field name="model">account.move</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">l10n_do_accounting.l10n_do_report_invoice</field>
+        <field name="print_report_name">(object._get_report_base_filename())</field>
+        <field name="report_file">(object._get_report_base_filename())</field>
+        <field name="attachment">((object.state in ('posted','paid')) and ('INV'+(object.name or '').replace('/','')+'.pdf'))</field>
+
+        <field name="binding_model_id" ref="account.model_account_move" />
+        <field name="binding_type">report</field>
+    </record>
+    <record id="account.account_invoices" model="ir.actions.report">
+        <field name="name">Invoices</field>
+        <field name="model">account.move</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="print_report_name">(object._get_report_base_filename())</field>
+        <field name="attachment">((object.state in ('posted','paid')) and ('INV'+(object.name or '').replace('/','')+'.pdf'))</field>
+        <field name="report_name">l10n_do_accounting.l10n_do_report_invoice_with_payments</field>
+        <field name="binding_model_id" ref="account.model_account_move" />
+        <field name="binding_type">report</field>
+    </record>
+</odoo>
+

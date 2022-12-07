@@ -1,0 +1,69 @@
+<odoo>
+  <data>
+
+    <record model="ir.ui.view" id="view_move_form" >
+      <field name="name">l10n_do_account_withholding_cert</field>
+      <field name="model">account.move</field>
+      <field name="inherit_id" ref="account.view_move_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//header/button[@name='action_post']" position="before">
+            <button name="print_certification" 
+                   string="Imprimir Certificacion" type="object" 
+                    attrs="{'invisible': ['|',('certification_check', '=', False),('payment_state','not in',('paid','in_payment'))]}"  />
+        </xpath>
+
+        <field name="to_check" position="after">
+          <!-- <field name="need_certification" invisible="1"/> -->
+          <field name="need_certification" invisible="1"/>
+        </field>
+
+        <xpath expr="//group[@id='header_right_group']" position="inside">
+
+              <!-- only show the field if is a vendor bill and is paid  -->
+              <field name="certification_check" attrs="{'invisible': ['|',('move_type', '==', 'out_invoice'),('payment_state','not in',('paid','in_payment'))]}" />
+
+
+        </xpath>
+
+
+
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_account_form">
+      <field name="name">l10n_do_account_withholding_cert</field>
+      <field name="model">account.account</field>
+      <field name="inherit_id" ref="account.view_account_form"/>
+      <field name="arch" type="xml">
+        <field name="deprecated" position="after">
+          <field name="certification_id" create="0"/>
+        </field>
+      </field>
+    </record>
+      
+    <record model="ir.ui.view" id="certification_tax_view_tree">
+      <field name="name">certification_tax_view_tree</field>
+      <field name="model">certification.tax</field>
+      <field name="arch" type="xml">
+        <tree editable="bottom">
+          <field name="norm"/>
+            <field name="name"/>
+            <field name="report_description"/>
+        </tree>
+      </field>
+    </record>
+
+      
+        <record model="ir.actions.act_window" id="certification_tax_action">
+            <field name="name">Certifications</field>
+            <field name="res_model">certification.tax</field>
+            <field name="view_mode">tree</field>
+            <field name="context" eval="{'payment_state':'paid'}" />
+        </record>
+
+        <menuitem id="certification_tax_menu" name="Certifications"
+                  parent="account.account_account_menu"
+                  action="certification_tax_action"/>
+
+  </data>
+</odoo>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_partner_property_form_inherited" model="ir.ui.view">
+        <field name="name">view.partner.property.form</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="model">res.partner</field>
+        <field name="arch" type="xml">
+
+            <field name="name" position="replace">
+                <field name="name" default_focus="1" placeholder="Nombre, RNC o Cédula" attrs="{'required': [('type', '=', 'contact')]}" widget="dgii_autocomplete"/>
+            </field>
+            <xpath expr="//field[@name='vat']" position="attributes">
+                <attribute name="attrs">{"readonly": [["parent_id","!=",False]], "required": [["is_fiscal_info_required","=",True]]}</attribute>
+                <attribute name="placeholder">RNC/Cédula</attribute>
+            </xpath>
+            <xpath expr="//field[@name='vat']" position="after">
+                <field name="is_fiscal_info_required" invisible="1"/>
+                <field name="l10n_do_dgii_tax_payer_type" attrs="{'readonly': [['parent_id','!=',False]], 'required': []}"/>
+            </xpath>
+            <xpath expr="//field[@name='property_supplier_payment_term_id']" position="after">
+                <field name="l10n_do_expense_type"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

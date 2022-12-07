@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_account_fiscal_sequence,access_account_fiscal_sequence,model_account_fiscal_sequence,base.group_user,1,1,1,1
+access_account_fiscal_sequence_validate_wizard,access_account_fiscal_sequence_validate_wizard,model_account_fiscal_sequence_validate_wizard,base.group_user,1,1,1,1
+access_account_move_tax,access_account_move_tax,model_account_move_tax,base.group_user,1,1,1,1
